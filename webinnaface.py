@@ -1,16 +1,21 @@
 import os
 
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
+from spotipy.util import prompt_for_user_token
+from setup import setupEnv
 
-sp = spotipy.Spotify(
-    auth_manager=SpotifyOAuth(
-        client_id=os.getenv("TestifyClientID"),
-        client_secret=os.getenv("TestifyClientSecret"),
-        redirect_uri="http://127.0.0.1:9090",
-        scope="user-library-read",
-    )
+setupEnv()
+
+soa = SpotifyOAuth(
+    client_id=os.getenv("SPOTIPY_CLIENT_ID"),
+    client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
+    redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
+    username=os.getenv("SPOTIPY_USER"),
+    scope="user-library-read",
 )
+
+sp = spotipy.Spotify(auth_manager=soa)
 results = sp.search(q="weezer", limit=20)
 for idx, track in enumerate(results["tracks"]["items"]):
     print(idx, track["name"])
