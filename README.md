@@ -1,4 +1,4 @@
-# spotify-client
+# spotify
 
 ## Misson: a side project I'm building for fun and growth! 
 I've been a spotify user since late 2011/early 2012 (will fact-check soon), and currently I have have something in the neighborhood of 500 playlists.
