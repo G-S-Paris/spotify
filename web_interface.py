@@ -5,6 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 from spotipy.util import prompt_for_user_token
 import setup
 
+
 setup.setupEnv()
 
 soa = SpotifyOAuth(
@@ -16,6 +17,11 @@ soa = SpotifyOAuth(
 )
 
 sp = spotipy.Spotify(auth_manager=soa)
-results = sp.search(q="weezer", limit=20)
-for idx, track in enumerate(results["tracks"]["items"]):
-    print(idx, track["name"])
+pl = sp.current_user_playlists()
+items = pl["items"]
+
+import pandas as pd
+
+## challenge here is unrolling the datatypes to work simply with what I want.
+## TODO - find a structure for the data
+pd.DataFrame(data=pl.items)

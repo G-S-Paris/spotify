@@ -130,3 +130,6 @@ dmypy.json
 
 # Author's private files
 setup.py
+.cache-1222656872
+removelist.txt
+.vscode/settings.json
